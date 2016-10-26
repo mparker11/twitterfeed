@@ -1,7 +1,21 @@
 <div id="app">
-	{{#each tweets}}
-		<p>{{ created_at }}</p>
-		<p>{{ text }}</p>
-		<hr />
-	{{/each}}
+	{{#if tweets}}
+		<div class="row tweet-header">
+			<h1>Tweets from {{ tweets.0.user.name }}</h1>
+		</div>
+		<div class="row auto-clear">
+			{{#each tweets}}
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 tweet-item">
+					<div class="tweet-item__inner" style="background-image: url()">
+						<p>{{ formatTime created_at }}</p>
+						<p>{{ text }}</p>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+	{{else}}
+		<div class="row tweet-header">
+			<h2>Sorry, this user probably doesn&rsquo;t<br />exists because you know, everyone tweets, right?</h2>
+		</div>
+	{{/if}}
 </div>

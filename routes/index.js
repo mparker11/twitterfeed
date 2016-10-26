@@ -7,7 +7,13 @@ router.get('/:username?', function(req, res, next) {
 	feed.getTweets(username, function(tweets) {
 		res.render('index', {
 			title: 'Twitter Feed',
-			tweets: tweets
+			tweets: tweets,
+			helpers: { 
+				formatTime: function(time) {
+				    var newTime = time.substr(0, time.indexOf('+')) + 'GMT';
+				    return newTime;
+				}
+			}
 		});
 	});
 });
